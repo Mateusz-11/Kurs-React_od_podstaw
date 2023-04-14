@@ -1,5 +1,16 @@
-//Przycisk - po kliknięciu dodawana jest litera do tekstu
+//Funkcja strzałkowa a deklarowanie metody. Bind
+//setState - przekazanie do metody obiektu i funkcji
+//Definiowanie state w konstruktorze
+
 class App extends React.Component {
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		text: "",
+	// 	};
+	// 	this.handleClick = this.handleClick.bind(this);
+	// }
+
 	state = {
 		text: "aa",
 	};
@@ -7,8 +18,14 @@ class App extends React.Component {
 	handleClick = () => {
 		const letter = "a";
 
-		this.setState({
-			text: this.state.text + letter,
+		// this.setState({
+		// 	text: this.state.text + letter,
+		// });
+
+		this.setState((prevState) => {
+			return {
+				text: this.state.text + letter,
+			};
 		});
 	};
 
