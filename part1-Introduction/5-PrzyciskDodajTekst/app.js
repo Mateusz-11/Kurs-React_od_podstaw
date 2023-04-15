@@ -8,11 +8,12 @@ class App extends React.Component {
 	// }
 
 	state = {
-		text: "aa",
+		text: "->",
+		btn: "uruchom",
 	};
 
 	handleClick = () => {
-		const letter = "a";
+		const number = Math.floor(Math.random() * 10);
 
 		// this.setState({
 		// 	text: this.state.text + letter,
@@ -20,15 +21,18 @@ class App extends React.Component {
 
 		this.setState((prevState) => {
 			return {
-				text: this.state.text + letter,
+				text: this.state.text + number,
 			};
 		});
 	};
 
 	render() {
+		const btnName = "Stwórz liczbę";
 		return (
 			<React.Fragment>
-				<button onClick={this.handleClick}>Dodaj "A"</button>
+				<button onClick={this.handleClick}>
+					Dodaj cyfrę - {this.props.btnTitle} - {btnName} - {this.state.btn}
+				</button>
 				<PanelResult text={this.state.text} />
 			</React.Fragment>
 		);
@@ -39,4 +43,7 @@ const PanelResult = (props) => {
 	return <h1>{props.text}</h1>;
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+	<App btnTitle='dodaj cyfrę' />,
+	document.getElementById("root")
+);
