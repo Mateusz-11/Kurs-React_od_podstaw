@@ -5,18 +5,24 @@ class Message extends React.Component {
 			messageIsActive: false,
 		};
 	}
+	// handleClick = () => {
+	// 	this.setState((prevState) => {
+	// 		if (prevState.messageIsActive === false) {
+	// 			return {
+	// 				messageIsActive: true,
+	// 			};
+	// 		} else {
+	// 			return {
+	// 				messageIsActive: false,
+	// 			};
+	// 		}
+	// 	});
+	// };
+
 	handleClick = () => {
-		this.setState((prevState) => {
-			if (prevState.messageIsActive === false) {
-				return {
-					messageIsActive: true,
-				};
-			} else {
-				return {
-					messageIsActive: false,
-				};
-			}
-		});
+		this.setState((prevState) => ({
+			messageIsActive: !prevState.messageIsActive,
+		}));
 	};
 
 	render() {
