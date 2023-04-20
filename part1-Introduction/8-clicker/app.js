@@ -29,14 +29,15 @@ class Counter extends React.Component {
 	// };
 	//  v2 - 1 function
 	handleClicks = (type, number) => {
+		// debugger;
 		if (type === "addition") {
 			this.setState((prevState) => ({
-				result: prevState.result + 1,
+				result: prevState.result + number,
 				allClicks: prevState.allClicks + 1,
 			}));
 		} else if (type === "substraction") {
 			this.setState((prevState) => ({
-				result: prevState.result - 1,
+				result: prevState.result - number,
 				allClicks: prevState.allClicks + 1,
 			}));
 		} else if (type === "reset") {
@@ -52,15 +53,25 @@ class Counter extends React.Component {
 		return (
 			<>
 				<div>
-					<button onClick={this.handleClicks.bind(this, "addition", 1)}>
-						+1
-					</button>
-					<button onClick={() => this.handleClicks("substraction", 1)}>
-						-1
-					</button>
-					<button onClick={() => this.handleClicks("reset")}>
-						reset wyniku
-					</button>
+					<MathButton
+						name='-1'
+						number={1}
+						type='substraction'
+						click={this.handleClicks}
+					/>
+					<MathButton
+						name='+1'
+						number={1}
+						type='addition'
+						click={this.handleClicks}
+					/>
+					<MathButton
+						name='+10'
+						number={10}
+						type='addition'
+						click={this.handleClicks}
+					/>
+					<MathButton name='reset' type='reset' click={this.handleClicks} />
 					<h1>Liczba kliknięć: {this.state.allClicks}</h1>
 					<h2>Wynik: {this.state.result}</h2>
 				</div>
@@ -75,6 +86,14 @@ class Counter extends React.Component {
 		);
 	}
 }
+
+const MathButton = (props) => {
+	return (
+		<button onClick={() => props.click(props.type, props.number)}>
+			{props.name}
+		</button>
+	);
+};
 
 const startValue = 0;
 ReactDOM.render(
