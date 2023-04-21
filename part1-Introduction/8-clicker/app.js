@@ -72,8 +72,11 @@ class Counter extends React.Component {
 						click={this.handleClicks}
 					/>
 					<MathButton name='reset' type='reset' click={this.handleClicks} />
-					<h1>Liczba kliknięć: {this.state.allClicks}</h1>
-					<h2>Wynik: {this.state.result}</h2>
+
+					<ResultPanel
+						count={this.state.allClicks}
+						result={this.state.result}
+					/>
 				</div>
 				<div>
 					<button onClick={this.handleClickUp}>+1</button>
@@ -92,6 +95,18 @@ const MathButton = (props) => {
 		<button onClick={() => props.click(props.type, props.number)}>
 			{props.name}
 		</button>
+	);
+};
+
+const ResultPanel = (props) => {
+	return (
+		<>
+			<h1>
+				Liczba kliknięć: {props.count}{" "}
+				{props.count > 10 ? "-> Większe od 10" : null}
+			</h1>
+			<h2>Wynik: {props.result}</h2>
+		</>
 	);
 };
 
