@@ -4,12 +4,25 @@ const NegativeMessage = () => {
 };
 
 class CheckboxAgeConfirmation extends React.Component {
+	state = {
+		isChecked: true,
+	};
+	handleCheckboxChange = () => {
+		this.setState({
+			isChecked: !this.state.isChecked,
+		});
+	};
 	render() {
 		console.log("isConfirmed");
 		return (
 			<>
 				<h1>Kup bilet na horror roku!</h1>
-				<input type='checkbox' />
+				<input
+					type='checkbox'
+					id='age'
+					onChange={this.handleCheckboxChange}
+					checked={this.state.isChecked}
+				/>
 				<label htmlFor='age'>Mam co najmniej 16 lat</label>
 				{true ? <PositiveMessage /> : <NegativeMessage />}
 			</>
