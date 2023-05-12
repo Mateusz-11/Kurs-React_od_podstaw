@@ -22,14 +22,19 @@ class TicketShop extends React.Component {
 			} else {
 				return <NegativeMessage />;
 			}
+		} else {
+			return null;
 		}
+	};
+	handleFormSubmit = (e) => {
+		e.preventDefault();
 	};
 	render() {
 		// console.log("isConfirmed");
 		return (
 			<>
 				<h1>Kup bilet na horror roku!</h1>
-				<form>
+				<form onSubmit={this.handleFormSubmit}>
 					<input
 						type='checkbox'
 						id='age'
