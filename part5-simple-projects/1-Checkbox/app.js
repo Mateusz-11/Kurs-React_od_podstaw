@@ -13,6 +13,7 @@ class TicketShop extends React.Component {
 	handleCheckboxChange = () => {
 		this.setState({
 			isChecked: !this.state.isChecked,
+			isFormSubmitted: false,
 		});
 	};
 	displayMessage = () => {
@@ -28,6 +29,11 @@ class TicketShop extends React.Component {
 	};
 	handleFormSubmit = (e) => {
 		e.preventDefault();
+		if (!this.state.isFormSubmitted) {
+			this.setState({
+				isFormSubmitted: true,
+			});
+		}
 	};
 	render() {
 		// console.log("isConfirmed");
