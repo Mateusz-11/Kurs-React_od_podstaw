@@ -1,32 +1,42 @@
-// const { Button } = require("bootstrap");
+// Jeden komponent z dwoma różnymi tekstami
+// Destrukturyzacja
+// Funkcja poza komponentem
 
-const PositiveMessage = () => <p>Możesz obejrzeć film. Zapraszamy</p>;
-const NegativeMessage = () => {
-	return <p>Nie możesz obejrzeć filmu.</p>;
+const displayMessage = (isConfirmed, isFormSubmitted) => {
+	if (isFormSubmitted) {
+		if (isConfirmed) {
+			return <ValidationMessage txt='Możesz obejrzeć film. Zapraszamy!' />;
+		} else {
+			return (
+				<ValidationMessage txt='Nie możesz obejrzeć tego filmu jeśli masz mniej niż 16 lat!' />
+			);
+		}
+	} else {
+		return null;
+	}
 };
+
+const ValidationMessage = (props) => {
+	const { txt } = props;
+	return <p>{txt}</p>;
+};
+// const PositiveMessage = () => <p>Możesz obejrzeć film. Zapraszamy!</p>;
+
+// const NegativeMessage = () => <p>Nie możesz obejrzeć tego filmu jeśli masz mniej niż 16 lat!</p>;
 
 class TicketShop extends React.Component {
 	state = {
-		isChecked: true,
+		isConfirmed: false,
 		isFormSubmitted: false,
 	};
+
 	handleCheckboxChange = () => {
 		this.setState({
-			isChecked: !this.state.isChecked,
+			isConfirmed: !this.state.isConfirmed,
 			isFormSubmitted: false,
 		});
 	};
-	displayMessage = () => {
-		if (this.state.isFormSubmitted) {
-			if (this.state.isChecked) {
-				return <PositiveMessage />;
-			} else {
-				return <NegativeMessage />;
-			}
-		} else {
-			return null;
-		}
-	};
+
 	handleFormSubmit = (e) => {
 		e.preventDefault();
 		if (!this.state.isFormSubmitted) {
@@ -35,8 +45,19 @@ class TicketShop extends React.Component {
 			});
 		}
 	};
+
+	// displayMessage = () => {
+	//   if (this.state.isFormSubmitted) {
+	//     if (this.state.isConfirmed) {
+	//       return <ValidationMessage txt="Możesz obejrzeć film. Zapraszamy!" />
+	//     } else {
+	//       return <ValidationMessage txt="Nie możesz obejrzeć tego filmu jeśli masz mniej niż 16 lat!" />
+	//     }
+	//   } else { return null }
+	// }
 	render() {
-		// console.log("isConfirmed");
+		const { isConfirmed, isFormSubmitted } = this.state;
+
 		return (
 			<>
 				<h1>Kup bilet na horror roku!</h1>
@@ -45,13 +66,13 @@ class TicketShop extends React.Component {
 						type='checkbox'
 						id='age'
 						onChange={this.handleCheckboxChange}
-						checked={this.state.isChecked}
-					/>{" "}
+						checked={isConfirmed}
+					/>
+					<label htmlFor='age'>Mam co najmniej 16 lata</label>
 					<br />
-					<label htmlFor='age'>Mam co najmniej 16 lat</label>
 					<button type='submit'>Kup bilet</button>
 				</form>
-				{this.displayMessage()}
+				{displayMessage(isConfirmed, isFormSubmitted)}
 			</>
 		);
 	}
