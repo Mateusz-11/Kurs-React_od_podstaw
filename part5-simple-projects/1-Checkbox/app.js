@@ -3,6 +3,19 @@ const ValidationMessage = (props) => {
 	return <p>{txt}</p>;
 };
 
+const OrderForm = (props) => (
+	<form onSubmit={props.submit}>
+		<input
+			type='checkbox'
+			id='age'
+			onChange={props.change}
+			checked={props.checked}
+		/>
+		<label htmlFor='age'>Mam co najmniej 16 lata</label>
+		<br />
+		<button type='submit'>Kup bilet</button>
+	</form>
+);
 class TicketShop extends React.Component {
 	state = {
 		isConfirmed: false,
@@ -44,17 +57,11 @@ class TicketShop extends React.Component {
 		return (
 			<>
 				<h1>Kup bilet na horror roku!</h1>
-				<form onSubmit={this.handleFormSubmit}>
-					<input
-						type='checkbox'
-						id='age'
-						onChange={this.handleCheckboxChange}
-						checked={isConfirmed}
-					/>
-					<label htmlFor='age'>Mam co najmniej 16 lata</label>
-					<br />
-					<button type='submit'>Kup bilet</button>
-				</form>
+				<OrderForm
+					change={this.handleCheckboxChange}
+					submit={this.handleFormSubmit}
+					checked={isConfirmed}
+				/>
 				{this.displayMessage()}
 			</>
 		);
