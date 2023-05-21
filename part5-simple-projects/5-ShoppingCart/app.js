@@ -25,7 +25,10 @@ class App extends React.Component {
 					onClick={this.handleRemoveFromCart}>
 					-
 				</button>
-				<span className> {this.state.shoppingCart} </span>
+				<span className={this.state.shoppingCart === 0 && "deactivateCounter"}>
+					{" "}
+					{this.state.shoppingCart}{" "}
+				</span>
 				<button
 					disabled={
 						this.state.shoppingCart === this.state.availableProducts
