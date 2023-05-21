@@ -3,7 +3,13 @@ class ListItems extends React.Component {
 		items: ["jabłko", "sliwka", "gruszka"],
 	};
 	render() {
-		return <ul></ul>;
+		return (
+			<ul>
+				{this.state.items.map((prod, id) => (
+					<li key={id}>{prod}</li>
+				))}
+			</ul>
+		);
 	}
 }
 
