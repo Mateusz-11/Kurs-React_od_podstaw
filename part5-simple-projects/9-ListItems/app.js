@@ -28,9 +28,13 @@ const data = {
 };
 
 const Item = ({ user }) => (
-	<div>
-		<h1>Użytkownik: {user.name}</h1>
-		<h2>Ma: {user.age}</h2>
+	<div className='userInfo'>
+		<h1>{user.name}</h1>
+		<p>Informacje o użytkowniku:</p>
+		<p>
+			Wiek użytkownika: <strong>{user.age}</strong>
+		</p>
+		<p>Płeć użytkownika: {user.sex}</p>
 	</div>
 );
 
@@ -40,7 +44,8 @@ class ListItems extends React.Component {
 	//   }
 
 	render() {
-		const users = this.props.data.users;
+		let users = this.props.data.users;
+		users = users.filter((user) => user.sex === "male");
 		const Items = users.map((user) => <Item key={user.id} user={user} />);
 		return <ul>{Items}</ul>;
 	}
