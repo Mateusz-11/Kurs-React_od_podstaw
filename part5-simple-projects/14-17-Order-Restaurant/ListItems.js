@@ -1,11 +1,11 @@
-const ListItems = () => {
+const ListItems = (props) => {
+	const items = props.items.map((items) => (
+		<Item key={items.id} name={items.name} active={active} />
+	));
 	return (
-		<div>
-			<ul>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-			</ul>
+		<div className='list'>
+			<h1>Twoje zamówienie:</h1>
+			<ul>{items}</ul>
 		</div>
 	);
 };

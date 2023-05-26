@@ -19,7 +19,7 @@ class App extends React.Component {
 		return (
 			<React.Fragment>
 				<Header items={this.state.items} />
-				<ListItems />
+				<ListItems items={this.state.items} />
 			</React.Fragment>
 		);
 	}
