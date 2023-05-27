@@ -15,11 +15,28 @@ class App extends React.Component {
 		console.log(id);
 	};
 
+	handleChangeStatus = (id) => {
+		// console.log("dziala");
+		console.log(id);
+		const items = this.state.items.map((item) => {
+			if (id === item.id) {
+				item.active = !item.active;
+			}
+			return item;
+		});
+		this.setState({
+			items: items,
+		});
+	};
+
 	render() {
 		return (
 			<React.Fragment>
 				<Header items={this.state.items} />
-				<ListItems items={this.state.items} />
+				<ListItems
+					items={this.state.items}
+					changeStatus={this.handleChangeStatus}
+				/>
 			</React.Fragment>
 		);
 	}
