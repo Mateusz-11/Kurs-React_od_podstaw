@@ -6,4 +6,4 @@
 // Wersja na 5 - zobacz wróżbę, losuje jedną z trzech wróżb
 // Wersja na 6 - dodaje do trzech istniejących wróżb kolejną
 
-ReactDOM.render(<Draw />, document.getElementById("root"));
+
