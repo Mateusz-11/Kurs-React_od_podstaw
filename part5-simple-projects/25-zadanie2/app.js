@@ -7,7 +7,7 @@ const Person = (props) => {
 			<li>
 				<span>{props.name}</span>
 			</li>
-			<button onClick={props.delete}>Usuń</button>
+			<button onClick={() => props.delete(props.name)}>Usuń</button>
 		</>
 	);
 };
@@ -22,30 +22,50 @@ class List extends React.Component {
 		],
 	};
 
-	handleDelete(id) {
-		// console.log(this, id);
-		const people = [...this.state.people];
-		const index = people.findIndex((person) => person.id === id);
-		console.log(index);
-		people.splice(index, 1);
+	// handleDelete(id) {
+	// 	// console.log(this, id);
+	// 	const people = [...this.state.people];
+	// 	const index = people.findIndex((person) => person.id === id);
+	// 	// console.log(index);
+	// 	people.splice(index, 1);
+	// 	// console.log(people);
+	// 	this.setState({
+	// 		people,
+	// 	});
+	// }
+
+	handleDelete = (name) => {
+		// let people = Array.from(this.state.people);
+		let people = this.state.people.slice();
+		people = people.filter((person) => name !== person.name);
 		console.log(people);
 		this.setState({
-			people,
+			people: people,
 		});
-	}
+	};
 
 	render() {
+		// const people = this.state.people.map((person) => (
+		// 	<Person
+		// 		key={person.id}
+		// 		name={person.name}
+		// 		delete={this.handleDelete.bind(this, person.id)}
+		// 	/>
+		// ));
+
+		// const people = this.state.people.map((person) => (
+		// 	<Person
+		// 		key={person.id}
+		// 		name={person.name}
+		// 		delete={this.handleDelete.bind(this, person.name)}
+		// 	/>
+		// ));
+		const people = this.state.people.map((person) => (
+			<Person key={person.id} name={person.name} delete={this.handleDelete} />
+		));
 		return (
 			<div>
-				<ul>
-					{this.state.people.map((person) => (
-						<Person
-							key={person.id}
-							name={person.name}
-							delete={this.handleDelete.bind(this, person.id)}
-						/>
-					))}
-				</ul>
+				<ul>{people}</ul>
 			</div>
 		);
 	}
