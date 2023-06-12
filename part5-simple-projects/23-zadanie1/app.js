@@ -10,6 +10,7 @@ class Draw extends React.Component {
 	state = {
 		options: ["1", "2", "3"],
 		option: null,
+		value: "",
 	};
 	handleShowOption = () => {
 		const index = Math.floor(Math.random() * this.state.options.length);
@@ -18,10 +19,34 @@ class Draw extends React.Component {
 		});
 	};
 
+	handelInputChange = (e) => {
+		this.setState({
+			value: e.target.value,
+		});
+	};
+
+	handleAddOption = () => {
+		if (this.state.value === "") return alert("wpisz coś!");
+		// const options = [...this.state.options];
+		// options.push(this.state.value);
+		const options = this.state.options.concat(this.state.value);
+		this.setState({
+			options,
+			value: "",
+		});
+		alert("wróżba dodana");
+	};
+
 	render() {
 		return (
 			<div>
 				<button onClick={this.handleShowOption}>Zobacz wróżbę</button>
+				<input
+					type='text'
+					value={this.state.value}
+					onChange={this.handelInputChange}
+				/>
+				<button onClick={this.handleAddOption}>Dodaj wróżbę</button>
 				{this.state.option ? <h1>{this.state.option}</h1> : null}
 			</div>
 		);
