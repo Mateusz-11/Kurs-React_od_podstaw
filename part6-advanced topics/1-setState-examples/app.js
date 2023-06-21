@@ -18,6 +18,7 @@ class Clicker extends React.Component {
 				<button onClick={this.handleClick1}>Podbij o 1</button>
 				<h1>{this.state.number1}</h1>
 				<button onClick={this.handleClick2}>Podbij o 3</button>
+				<button onClick={this.handleClick2}>Podbij o 3</button>
 				<h1>{this.state.number2}</h1>
 				<button onClick={this.handleClick3}>Podbij o 3</button>
 				<h1>{this.state.number3}</h1>
