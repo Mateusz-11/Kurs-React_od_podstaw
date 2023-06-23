@@ -5,11 +5,23 @@ class Clicker extends React.Component {
 		number3: 0,
 	};
 
-	handleClick1 = () => {};
+	handleClick1 = () => {
+		this.setState({
+			number1: this.state.number1 + 1,
+		});
+	};
 
-	handleClick2 = () => {};
+	handleClick2 = () => {
+		this.setState({
+			number2: this.state.number2 + 3,
+		});
+	};
 
-	handleClick3 = () => {};
+	handleClick3 = () => {
+		this.setState({
+			number3: this.state.number3 + 3,
+		});
+	};
 
 	render() {
 		// console.log(this.state.number2 + "w render");
