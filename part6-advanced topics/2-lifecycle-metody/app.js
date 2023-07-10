@@ -35,22 +35,24 @@ class App extends React.Component {
 }
 
 class Child extends React.Component {
-  componentDidMount() {
-    console.log('Wywołana componentDidMount w komponencie Child');
-    // this.setState({
-    //   number: 1
-    // })
-  }
+	componentDidMount() {
+		console.log("Wywołana componentDidMount w komponencie Child");
+		// this.setState({
+		//   number: 1
+		// })
+	}
 
-  render() {
-    console.log(`
+	render() {
+		console.log(`
     -----------------------------
     Wywołana metoda render w komponencie Child
     `);
-    return (
-      <h1>Dziecko</h1>
-    )
-  }
+		return (
+			<>
+				<h1>Dziecko</h1>
+			</>
+		);
+	}
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
