@@ -50,7 +50,6 @@ class Child extends React.Component {
 		return (
 			<>
 				<h1>Dziecko</h1>
-				<h2>Dziecko</h2>
 			</>
 		);
 	}
